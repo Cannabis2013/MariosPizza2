@@ -1,11 +1,12 @@
-package mariosPizza.ui;
+package mariosPizza.ui.PrinterServices;
 
-import mariosPizza.DataContext.pizzaMenu.Pizza;
+import mariosPizza.ui.Controller.IOServices.IPrintMenuScreen;
+import mariosPizza.LocalDataContext.pizzaMenu.Pizza;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintPizzaMenu {
+public class PrintPizzaMenu implements IPrintMenuScreen<Pizza> {
     public String fReset = "\u001B[0m";
     public String green = "\u001B[32m";
     public String blue = "\u001B[34m";
@@ -22,7 +23,7 @@ public class PrintPizzaMenu {
             var name = pizza.name;
             var topping = pizza.topping;
             var price = pizza.price;
-            var index = pizza.pizzaIndex;
+            var index = pizza.pizzaIndex();
             lineSpace();
             String str = String.format("(%d) %-15s %-75s %3d,-", index,name,topping,price);
             strings.add(str);

@@ -1,11 +1,12 @@
-package mariosPizza.ui;
+package mariosPizza.ui.PrinterServices;
 
-import mariosPizza.DataContext.pizzaOrders.Order;
+import mariosPizza.ui.Controller.IOServices.IPrintMenuScreen;
+import mariosPizza.LocalDataContext.pizzaOrders.Order;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintOrderMenu {
+public class PrintOrderMenu implements IPrintMenuScreen<Order> {
     public String fReset = "\u001B[0m";
     public String green = "\u001B[32m";
     public String blue = "\u001B[34m";

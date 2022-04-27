@@ -1,7 +1,7 @@
-import mariosPizza.ui.PrintController;
+import mariosPizza.ui.UI;
 
 public class Program {
     public static void main(String[] args) {
-        new PrintController().run();
+        new UI().run();
     }
 }

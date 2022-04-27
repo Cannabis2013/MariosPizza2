@@ -1,8 +1,10 @@
-package mariosPizza.ui;
+package mariosPizza.ui.PrinterServices;
+
+import mariosPizza.ui.Controller.IOServices.IPrintScreen;
 
 import java.awt.*;
 
-public class PrintBlankScreen {
+public class PrintBlankScreen implements IPrintScreen {
     public void print() {
         var dim = Toolkit.getDefaultToolkit().getScreenSize();
         int screenHeight = dim.height;

@@ -1,14 +1,14 @@
-package mariosPizza.DataContext.pizzaMenu;
+package mariosPizza.LocalDataContext.pizzaMenu;
 
 public class Pizza {
     private static int index = 1;
-    public int pizzaIndex;
+    private int pizzaIndex;
     public String name;
     public String topping;
     public int price;
 
     public int pizzaIndex() {
-        return index;
+        return pizzaIndex;
     }
 
     public Pizza(String name, String topping, int price) {
