@@ -1,6 +1,6 @@
 package mariosPizza.ui.PrinterServices;
 
-import mariosPizza.ui.Controller.IOServices.IPrintScreen;
+import mariosPizza.ui.Controller.ControllerServices.PrinterServices.IPrintScreen;
 
 import java.awt.*;
 

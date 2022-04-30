@@ -1,6 +1,6 @@
 package mariosPizza.ui.PrinterServices;
 
-import mariosPizza.ui.Controller.IOServices.IPrintMenuScreen;
+import mariosPizza.ui.Controller.ControllerServices.PrinterServices.IPrintMenuScreen;
 import mariosPizza.LocalDataContext.pizzaMenu.Pizza;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package mariosPizza.ui.CreateOrder;
 
-import mariosPizza.ui.Controller.IOServices.IReadValueFromUser;
+import mariosPizza.ui.Controller.ControllerServices.ConsoleInput.IReadValueFromUser;
 import java.util.Scanner;
 
 public class ReadOrderDuration implements IReadValueFromUser<Integer> {

@@ -1,6 +1,6 @@
-package mariosPizza.ui.IOServices;
+package mariosPizza.ui.ConsoleInput;
 
-import mariosPizza.ui.Controller.IOServices.IReadValueFromUser;
+import mariosPizza.ui.Controller.ControllerServices.ConsoleInput.IReadValueFromUser;
 import java.util.Scanner;
 
 public class ReadMenuOption implements IReadValueFromUser<Integer> {

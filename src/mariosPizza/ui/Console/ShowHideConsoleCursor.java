@@ -1,6 +1,6 @@
 package mariosPizza.ui.Console;
 
-import mariosPizza.ui.Controller.IOServices.IConsoleCursor;
+import mariosPizza.ui.Controller.ControllerServices.Console.IConsoleCursor;
 
 public class ShowHideConsoleCursor implements IConsoleCursor {
     public void hide(){

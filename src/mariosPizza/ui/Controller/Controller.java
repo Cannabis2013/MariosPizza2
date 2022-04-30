@@ -1,12 +1,16 @@
 package mariosPizza.ui.Controller;
 
 import mariosPizza.LocalDataContext.Contract.IDataContext;
-import mariosPizza.LocalDataContext.pizzaMenu.PizzaNotFoundException;
-import mariosPizza.LocalDataContext.pizzaOrders.OrderNotFoundException;
-import mariosPizza.ui.Controller.IOServices.IOServices;
+import mariosPizza.ui.Controller.ControllerServices.ControllerServices;
+import mariosPizza.ui.Controller.Routines.CreatePizzaOrder;
+import mariosPizza.ui.Controller.Routines.MarkOrderAsFinished;
+import mariosPizza.ui.Controller.Routines.RemoveOrder;
 
-public class MariosController extends IOServices {
+public class Controller extends ControllerServices {
     private IDataContext _dataContext;
+    private RemoveOrder _removeOrder = new RemoveOrder();
+    private CreatePizzaOrder _createOrder = new CreatePizzaOrder();
+    private MarkOrderAsFinished _markFinished = new MarkOrderAsFinished();
     public void setDataContext(IDataContext context) {
         _dataContext = context;
     }
@@ -36,36 +40,6 @@ public class MariosController extends IOServices {
         _printOrderMenu.print(orders);
     }
 
-    private void createPizzaOrder() {
-        while (true){
-            var pizzaIndex = _readPizzaIndex.read();
-            var duration = _readPizzaDuration.read();
-            try {
-                _dataContext.createOrder(pizzaIndex,duration);
-                break;
-            } catch (PizzaNotFoundException e) {
-                _printBadPizzaIndex.print();
-            }
-        }
-    }
-
-    private void removeOrder(){
-        var orderID = _readOrderID.read();
-        _dataContext.removeOrder(orderID);
-    }
-
-    private void markAsFinished(){
-        var orderID = _readOrderID.read();
-        while (true){
-            try {
-                _dataContext.finishOrder(orderID);
-                break;
-            } catch (OrderNotFoundException e) {
-                _printBadOrderID.print();
-            }
-        }
-    }
-
     public void run() {
         _consoleCursor.hide();
         printIntro();
@@ -82,18 +56,18 @@ public class MariosController extends IOServices {
       switch (decision) {
           case 1 -> {
               printPizzaMenu();
-              createPizzaOrder();
+              _createOrder.create(_dataContext,_readPizzaIndex,_readOrderID,_printBadPizzaIndex);
               _clearScreen.clear();
               printOrderMenu();
           }
           case 3 -> printPizzaMenu();
           case 4 -> {
               printOrderMenu();
-              removeOrder();
+              _removeOrder.remove(_dataContext,_readOrderID);
           }
           case 5 -> {
               printOrderMenu();
-              markAsFinished();
+              _markFinished.mark(_dataContext,_readOrderID,_printBadOrderID);
           }
           case 6 -> shutDown();
           default -> printOrderMenu();

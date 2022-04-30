@@ -1,6 +1,6 @@
 package mariosPizza.ui.Console;
 
-import mariosPizza.ui.Controller.IOServices.IClearScreen;
+import mariosPizza.ui.Controller.ControllerServices.Console.IClearScreen;
 
 import java.awt.*;
 

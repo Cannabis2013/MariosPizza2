@@ -1,7 +1,7 @@
-import mariosPizza.ui.UI;
+import mariosPizza.ui.Marios;
 
 public class Program {
     public static void main(String[] args) {
-        new UI().run();
+        new Marios().run();
     }
 }

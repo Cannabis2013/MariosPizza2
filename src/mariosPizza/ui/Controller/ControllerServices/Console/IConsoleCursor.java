@@ -1,4 +1,4 @@
-package mariosPizza.ui.Controller.IOServices;
+package mariosPizza.ui.Controller.ControllerServices.Console;
 
 public interface IConsoleCursor {
     void hide();

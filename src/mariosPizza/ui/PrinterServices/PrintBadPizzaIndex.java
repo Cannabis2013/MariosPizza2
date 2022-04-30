@@ -1,8 +1,8 @@
 package mariosPizza.ui.PrinterServices;
 
-import mariosPizza.ui.Controller.IOServices.IPrintBadInput;
+import mariosPizza.ui.Controller.ControllerServices.PrinterServices.IPrintScreen;
 
-public class PrintBadPizzaIndex implements IPrintBadInput {
+public class PrintBadPizzaIndex implements IPrintScreen {
     @Override
     public void print() {
         var blink = "\33[6m";

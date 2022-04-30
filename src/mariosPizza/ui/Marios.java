@@ -2,19 +2,19 @@ package mariosPizza.ui;
 
 import mariosPizza.LocalDataContext.LocalDataContext;
 import mariosPizza.ui.Console.ShowHideConsoleCursor;
-import mariosPizza.ui.Controller.MariosController;
+import mariosPizza.ui.Controller.Controller;
 import mariosPizza.ui.CreateOrder.ReadOrderDuration;
 import mariosPizza.ui.CreateOrder.ReadPizzaIndex;
 import mariosPizza.ui.Console.ClearConsole;
 import mariosPizza.ui.Console.DisableConsoleScroll;
-import mariosPizza.ui.IOServices.ReadMenuOption;
+import mariosPizza.ui.ConsoleInput.ReadMenuOption;
 import mariosPizza.ui.PrinterServices.*;
 import mariosPizza.ui.RemoveOrder.ReadOrderID;
 
-public class UI {
-    MariosController _marios;
-    public UI(){
-        _marios = new MariosController();
+public class Marios {
+    Controller _marios;
+    public Marios(){
+        _marios = new Controller();
         _marios.setDataContext(new LocalDataContext());
         _marios.setPrintPizzas(new PrintPizzaMenu());
         _marios.setPrintOrders(new PrintOrderMenu());

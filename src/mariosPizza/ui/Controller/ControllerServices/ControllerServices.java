@@ -1,9 +1,16 @@
-package mariosPizza.ui.Controller.IOServices;
+package mariosPizza.ui.Controller.ControllerServices;
 
 import mariosPizza.LocalDataContext.pizzaMenu.Pizza;
 import mariosPizza.LocalDataContext.pizzaOrders.Order;
+import mariosPizza.ui.Controller.ControllerServices.Console.IClearScreen;
+import mariosPizza.ui.Controller.ControllerServices.Console.IConsoleCursor;
+import mariosPizza.ui.Controller.ControllerServices.Console.IDisableScreenScroll;
+import mariosPizza.ui.Controller.ControllerServices.ConsoleInput.IReadValueFromUser;
+import mariosPizza.ui.Controller.ControllerServices.PrinterServices.IPrintBadInput;
+import mariosPizza.ui.Controller.ControllerServices.PrinterServices.IPrintMenuScreen;
+import mariosPizza.ui.Controller.ControllerServices.PrinterServices.IPrintScreen;
 
-public class IOServices {
+public class ControllerServices {
     protected IPrintScreen _printWelcomeScreen;
     public void setPrintWelcomeScreen(IPrintScreen printWelcomeScreen) {
         _printWelcomeScreen = printWelcomeScreen;
@@ -59,14 +66,14 @@ public class IOServices {
         _printOrderMenu = printOrderMenu;
     }
 
-    protected IPrintBadInput _printBadPizzaIndex;
+    protected IPrintScreen _printBadPizzaIndex;
 
-    public void setPrintBadPizzaIndex(IPrintBadInput printBadPizzaIndex) {
+    public void setPrintBadPizzaIndex(IPrintScreen printBadPizzaIndex) {
         _printBadPizzaIndex = printBadPizzaIndex;
     }
 
-    protected IPrintBadInput _printBadOrderID;
-    public void setPrintBadOrderID(IPrintBadInput printBadOrderID) {
+    protected IPrintScreen _printBadOrderID;
+    public void setPrintBadOrderID(IPrintScreen printBadOrderID) {
         _printBadOrderID = printBadOrderID;
     }
 

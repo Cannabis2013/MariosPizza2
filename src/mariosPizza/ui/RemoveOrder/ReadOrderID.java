@@ -1,6 +1,6 @@
 package mariosPizza.ui.RemoveOrder;
 
-import mariosPizza.ui.Controller.IOServices.IReadValueFromUser;
+import mariosPizza.ui.Controller.ControllerServices.ConsoleInput.IReadValueFromUser;
 
 import java.util.Scanner;
 
