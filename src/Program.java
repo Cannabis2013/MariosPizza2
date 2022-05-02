@@ -1,7 +1,7 @@
-import mariosPizza.ui.Marios;
+import MariosPizza.ui.MarioConsoleOrdering;
 
 public class Program {
     public static void main(String[] args) {
-        new Marios().run();
+        new MarioConsoleOrdering().launch();
     }
 }
