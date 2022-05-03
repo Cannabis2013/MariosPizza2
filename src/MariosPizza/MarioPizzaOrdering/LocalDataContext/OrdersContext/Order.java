@@ -12,7 +12,7 @@ public class Order implements Comparable<Order>, Serializable {
             return 1;
         else if(val == 0)
         {
-            if(_pizzaIndex < order._pizzaIndex)
+            if(_orderID < order.orderID())
                 return 1;
             else
                 return -1;
