@@ -7,6 +7,7 @@ import MariosPizza.ui.RoutineBuilder.ConsoleInput.ReadOrderID;
 import MariosPizza.ui.RoutineBuilder.ConsoleInput.ReadPizzaIndex;
 import MariosPizza.ui.RoutineBuilder.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.RoutineBuilder.ConsoleManipulation.ConsoleCursorDevice;
+import MariosPizza.ui.RoutineBuilder.ConsoleManipulation.DisableConsoleScroll;
 import MariosPizza.ui.RoutineBuilder.ConsoleOutput.*;
 import MariosPizza.ui.RoutineBuilder.RoutineContexts.*;
 
@@ -38,6 +39,7 @@ public class MarioContextBuilder {
         routine.setPrintOrderMenu(new PrintOrders());
         routine.setPrintBadOrder(new PrintBadOrderID());
         routine.setPrintClearScreen(new ClearConsole());
+        routine.setEmptyOrdersPrinter(new PrintNoOrdersMessage());
         return routine;
     }
 
@@ -68,6 +70,13 @@ public class MarioContextBuilder {
     public IRoutineContext buildOrdersMenuContext(){
         var context = new OrdersMenuContext();
         context.setMenuPrinter(new PrintOrders());
+        return context;
+    }
+
+    public IRoutineContext buildMenuContext(){
+        var context = new MenuOperationsContext();
+        context.setMenuPrinter(new PrintMenuOperations());
+        context.setConsoleScrollDevice(new DisableConsoleScroll());
         return context;
     }
 }

@@ -4,7 +4,6 @@ import MariosPizza.MarioPizzaOrdering.Controller.Controller;
 import MariosPizza.MarioPizzaOrdering.MarioPizzaOrdering;
 import MariosPizza.ui.RoutineBuilder.ConsoleInput.ReadMenuOption;
 import MariosPizza.ui.RoutineBuilder.ConsoleManipulation.DisableConsoleScroll;
-import MariosPizza.ui.RoutineBuilder.ConsoleOutput.PrintMenuOperations;
 import MariosPizza.ui.RoutineBuilder.MarioContextBuilder;
 
 public class MarioConsoleOrdering {
@@ -17,25 +16,26 @@ public class MarioConsoleOrdering {
         var shutdown = builder.buildShutDownRoutine();
         var pizzasMenu = builder.buildPizzasMenuContext();
         var ordersMenu = builder.buildOrdersMenuContext();
-        controller.useWelcomeContext(welcomePrinter)
-                .useRemoveOrderContext(removeOrder)
-                .useOrderFinishedContext(orderFinishedRoutine)
-                .useCreateOrderRoutine(createOrderRoutine)
-                .usePizzaMenuContext(pizzasMenu)
-                .useOrderMenuPrinter(ordersMenu)
-                .useShutdownRoutine(shutdown);
+        var menuContext = builder.buildMenuContext();
+        controller.setWelcomeContext(welcomePrinter);
+        controller.setRemoveOrderContext(removeOrder);
+        controller.setOrderFinishedContext(orderFinishedRoutine);
+        controller.setCreateOrderRoutine(createOrderRoutine);
+        controller.setPizzaMenuContext(pizzasMenu);
+        controller.setOrderMenuPrinter(ordersMenu);
+        controller.setShutdownRoutine(shutdown);
+        controller.setMenuContext(menuContext);
     }
 
-    private void useServices(Controller controller){
-        controller.useConsoleScrollDevice(new DisableConsoleScroll())
-                .useReadMenuOption(new ReadMenuOption())
-                .useMenuPrinter(new PrintMenuOperations());
+    private void setServices(Controller controller){
+        controller.setConsoleScrollDevice(new DisableConsoleScroll());
+        controller.setReadMenuOption(new ReadMenuOption());
     }
 
     private void setupUI(MarioPizzaOrdering ordering){
         var controller = ordering.controller();
         setRoutineContexts(controller);
-        useServices(controller);
+        setServices(controller);
     }
 
     public void launch(){

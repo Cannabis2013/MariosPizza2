@@ -18,11 +18,11 @@ public class Controller extends ControllerServices {
 
     public void run(IDataContext context) {
         _startupContext.run();
-        _printMenu.print();
+        _menuContext.run();
         while (true){
             _scrollDevice.disable();
             decision(context);
-            _printMenu.print();
+            _menuContext.run();
         }
     }
 }

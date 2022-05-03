@@ -14,6 +14,11 @@ public class RemoveOrder implements IRoutineContext {
         _clearScreen = printer;
     }
 
+    private IConsolePrinter _printNoOrders;
+    public void setEmptyOrdersPrinter(IConsolePrinter printer){
+        _printNoOrders = printer;
+    }
+
     private IReadValueFromUser<Integer> _readOrderID;
     public void setReadOrderID(IReadValueFromUser<Integer> reader){
         _readOrderID = reader;
@@ -51,8 +56,10 @@ public class RemoveOrder implements IRoutineContext {
 
     public void run(IDataContext context){
         _clearScreen.clear();
-        if(!ordersExists(context))
+        if(!ordersExists(context)) {
+            _printNoOrders.print();
             return;
+        }
         printOrderMenu(context);
         var orderID = readOrderIDFromUser(context);
         if(!context.orderExists(orderID)){

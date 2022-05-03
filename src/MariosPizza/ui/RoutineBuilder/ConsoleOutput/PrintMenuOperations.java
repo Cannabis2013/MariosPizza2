@@ -24,7 +24,7 @@ public class PrintMenuOperations  implements IConsolePrinter {
         return items;
     }
 
-    private int aggregatedLength(List<String> items){
+    private int menuLength(List<String> items){
         var aggregatedLength = items.stream()
                 .map(String::length)
                 .reduce(0,(x,y) -> y += x);
@@ -35,21 +35,16 @@ public class PrintMenuOperations  implements IConsolePrinter {
         var header = new StringBuilder("\33[33m");
         var label = "MENU";
         var lengthOfDots = length - label.length();
-        for (var i = 0;i < lengthOfDots - 1;i++)
-            header.append("-");
-        int medianIndex;
-        if(lengthOfDots % 2 == 0)
-            medianIndex = lengthOfDots / 2;
-        else
-            medianIndex = (lengthOfDots / 2) + 1;
-        header.insert(medianIndex,label);
+        header.append("-".repeat(lengthOfDots/2));
+        header.append(label);
+        header.append("-".repeat(lengthOfDots/2 -1));
         header.append("\33[m");
         return header.toString();
     }
 
     public void print(){
         var items = buildItems();
-        var lengthOfItems = aggregatedLength(items);
+        var lengthOfItems = menuLength(items);
         var header = buildHeader(lengthOfItems);
         System.out.println(header);
         items.forEach(s -> System.out.print(s));
