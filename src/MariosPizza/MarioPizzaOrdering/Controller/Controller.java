@@ -7,18 +7,17 @@ public class Controller extends ControllerServices {
     private void decision(IDataContext context) {
       var decision = _readMenuOption.read();
       switch (decision) {
-          case 1 -> _createOrder.create(context);
-          case 3 -> _printPizzaMenu.print(context);
-          case 4 -> _removeOrder.remove(context);
-          case 5 -> _markFinished.mark(context);
-          case 6 -> _shutdown.shutdown(context);
-          default -> _printOrdersMenu.print(context);
+          case 1 -> _createOrder.run(context);
+          case 3 -> _printPizzaMenu.run(context);
+          case 4 -> _removeOrder.run(context);
+          case 5 -> _finishOrder.run(context);
+          case 6 -> _shutdown.run(context);
+          default -> _printOrdersMenu.run(context);
         }
     }
 
     public void run(IDataContext context) {
-        _consoleCursor.hide();
-        _printIntro.print();
+        _startupContext.run();
         _printMenu.print();
         while (true){
             _scrollDevice.disable();

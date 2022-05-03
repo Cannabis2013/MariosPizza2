@@ -2,10 +2,10 @@ package MariosPizza.MarioPizzaOrdering;
 
 import MariosPizza.MarioPizzaOrdering.Controller.Controller;
 import MariosPizza.MarioPizzaOrdering.DataContext.IDataContext;
-import MariosPizza.MarioPizzaOrdering.DataContext.DataContext;
+import MariosPizza.MarioPizzaOrdering.LocalDataContext.LocalDataContext;
 
 public class MarioPizzaOrdering {
-    private IDataContext _dataContext = new DataContext();
+    private IDataContext _dataContext = new LocalDataContext();
 
     public IDataContext dataContext() {
         return _dataContext;
