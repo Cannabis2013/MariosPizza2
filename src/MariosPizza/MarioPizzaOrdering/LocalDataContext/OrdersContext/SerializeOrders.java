@@ -1,12 +1,15 @@
 package MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext;
 
+import MariosPizza.MarioPizzaOrdering.DataContext.IPersistence;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersistOrders {
+public class SerializeOrders implements IPersistence {
     private final String _FILE = "Orders.ser";
 
+    @Override
     public void save(List<Order> orders) {
         FileOutputStream fileOut = null;
         try {
@@ -24,7 +27,8 @@ public class PersistOrders {
         }
     }
 
-    public List<Order> read() {
+    @Override
+    public List<Order> load() {
         FileInputStream fileIn = null;
         try {
             fileIn = new FileInputStream(_FILE);

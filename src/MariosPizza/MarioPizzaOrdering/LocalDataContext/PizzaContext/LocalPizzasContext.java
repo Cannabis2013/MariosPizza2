@@ -22,7 +22,7 @@ public class LocalPizzasContext implements IPizzasContext {
     }
 
     @Override
-    public Pizza getPizza(int index) throws PizzaNotFoundException {
+    public Pizza getPizza(int index) {
         var pizza = _pizzas.stream()
                 .filter(p -> p.pizzaIndex() == index).findFirst();
         if(pizza.isPresent())

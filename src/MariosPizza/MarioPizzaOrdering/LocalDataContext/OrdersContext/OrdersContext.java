@@ -1,15 +1,17 @@
 package MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext;
 
 import MariosPizza.MarioPizzaOrdering.DataContext.IOrdersContext;
+import MariosPizza.MarioPizzaOrdering.DataContext.IPersistence;
 
 import java.util.List;
 
-public class LocalOrdersContext implements IOrdersContext {
+public class OrdersContext implements IOrdersContext {
     private List<Order> _orders;
-    private PersistOrders _persistence = new PersistOrders();
+    private final IPersistence _persistence;
 
-    public LocalOrdersContext(){
-        _orders = _persistence.read();
+    public OrdersContext(IPersistence persistence){
+        _persistence = persistence;
+        _orders = _persistence.load();
         if(!_orders.isEmpty())
             Order.setInstanceIndex(_orders.size() + 1);
     }

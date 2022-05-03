@@ -1,6 +1,6 @@
 package MariosPizza.MarioPizzaOrdering.LocalDataContext.PizzaContext;
 
-public class PizzaNotFoundException extends Exception{
+public class PizzaNotFoundException extends RuntimeException{
     private int index;
     public PizzaNotFoundException(int index){
         this.index = index;

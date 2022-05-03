@@ -1,6 +1,6 @@
 package MariosPizza.MarioPizzaOrdering.DataContext;
 
-public abstract class AbstractDataContext implements IDataContext{
+public abstract class DataContextServices {
     protected IOrdersContext ordersContext() {
         return _ordersContext;
     }

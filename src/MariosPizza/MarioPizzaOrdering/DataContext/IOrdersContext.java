@@ -16,7 +16,7 @@ public interface IOrdersContext {
 
     List<Integer> getPizzaIndexesInProgress();
 
-    Order getOrderByID(int id) throws OrderNotFoundException;
+    Order getOrderByID(int id);
 
     void createOrder(int pizzaIndex, int duration);
 
