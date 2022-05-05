@@ -1,7 +1,6 @@
 package MariosPizza.MarioPizzaOrdering.DataContext;
 
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext.Order;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext.OrderNotFoundException;
+import MariosPizza.MarioPizzaOrdering.OrdersContext.Order;
 
 import java.util.List;
 

@@ -1,14 +1,16 @@
 package MariosPizza.MarioPizzaOrdering.DataContext;
 
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.PizzaContext.Pizza;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.PizzaContext.PizzaNotFoundException;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext.Order;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext.OrderNotFoundException;
+import MariosPizza.MarioPizzaOrdering.PizzaContext.Pizza;
+import MariosPizza.MarioPizzaOrdering.PizzaContext.PizzaNotFoundException;
+import MariosPizza.MarioPizzaOrdering.OrdersContext.Order;
+import MariosPizza.MarioPizzaOrdering.OrdersContext.OrderNotFoundException;
 
 import java.util.List;
 
 public interface IDataContext {
     List<Pizza> pizzas();
+
+    boolean isPizzaIndexValid(int index);
 
     List<Order> pendingOrders();
 

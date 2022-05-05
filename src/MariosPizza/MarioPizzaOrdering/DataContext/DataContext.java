@@ -1,21 +1,20 @@
 package MariosPizza.MarioPizzaOrdering.DataContext;
 
-import MariosPizza.MarioPizzaOrdering.DataContext.DataContextServices;
-import MariosPizza.MarioPizzaOrdering.DataContext.IDataContext;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext.OrdersContext;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext.SerializeOrders;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.PizzaContext.Pizza;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.PizzaContext.LocalPizzasContext;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.PizzaContext.PizzaNotFoundException;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext.Order;
-import MariosPizza.MarioPizzaOrdering.LocalDataContext.OrdersContext.OrderNotFoundException;
-
+import MariosPizza.MarioPizzaOrdering.PizzaContext.Pizza;
+import MariosPizza.MarioPizzaOrdering.PizzaContext.PizzaNotFoundException;
+import MariosPizza.MarioPizzaOrdering.OrdersContext.Order;
+import MariosPizza.MarioPizzaOrdering.OrdersContext.OrderNotFoundException;
 import java.util.List;
 
 public class DataContext extends DataContextServices implements IDataContext {
     @Override
     public List<Pizza> pizzas() {
         return pizzasContext().getPizzas();
+    }
+
+    @Override
+    public boolean isPizzaIndexValid(int index) {
+        return pizzasContext().isIndexValid(index);
     }
 
     @Override
