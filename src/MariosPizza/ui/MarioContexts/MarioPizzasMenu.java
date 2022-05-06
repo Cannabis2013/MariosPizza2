@@ -1,8 +1,8 @@
 package MariosPizza.ui.MarioContexts;
 
-import MariosPizza.MarioPizzaOrdering.Controller.Contracts.IRoutineContext;
-import MariosPizza.MarioPizzaOrdering.DataContext.IDataContext;
-import MariosPizza.MarioPizzaOrdering.PizzaContext.Pizza;
+import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.DataContext.PizzaContext.Pizza;
 import MariosPizza.ui.BuildMenus.BuildPizzaMenu;
 import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;

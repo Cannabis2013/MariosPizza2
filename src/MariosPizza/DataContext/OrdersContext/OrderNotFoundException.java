@@ -1,4 +1,4 @@
-package MariosPizza.MarioPizzaOrdering.OrdersContext;
+package MariosPizza.DataContext.OrdersContext;
 
 public class OrderNotFoundException extends RuntimeException{
 }

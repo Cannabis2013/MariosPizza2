@@ -1,7 +1,7 @@
-package MariosPizza.MarioPizzaOrdering.DataContext;
+package MariosPizza.DataContext.DataContext;
 
-import MariosPizza.MarioPizzaOrdering.PizzaContext.Pizza;
-import MariosPizza.MarioPizzaOrdering.PizzaContext.PizzaNotFoundException;
+import MariosPizza.DataContext.PizzaContext.Pizza;
+import MariosPizza.DataContext.PizzaContext.PizzaNotFoundException;
 
 import java.util.List;
 

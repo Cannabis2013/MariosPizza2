@@ -1,11 +1,12 @@
 package MariosPizza.ui;
 
-import MariosPizza.MarioPizzaOrdering.Controller.Controller;
-import MariosPizza.MarioPizzaOrdering.MarioPizzaOrdering;
+import MariosPizza.DataContext.Controller.Controller;
+import MariosPizza.DataContext.MarioPizzaOrdering;
+import MariosPizza.ui.ConsoleInput.ReadInputVerbose;
 import MariosPizza.ui.MarioContexts.*;
 
 public class MarioConsoleOrdering {
-    private void setRoutineContexts(Controller controller){
+    private void injectServices(Controller controller){
         controller.setWelcomeContext(new MarioStartup());
         controller.setRemoveOrderContext(new MarioRemoveOrder());
         controller.setOrderFinishedContext(new MarioFinishOrder());
@@ -14,11 +15,12 @@ public class MarioConsoleOrdering {
         controller.setOrderMenuPrinter(new MarioOrdersMenu());
         controller.setShutdownRoutine(new MarioShutdown());
         controller.setMenuContext(new MarioContextMenu());
+        controller.setMenuReader(new ReadInputVerbose());
     }
 
     private void setupUI(MarioPizzaOrdering ordering){
         var controller = ordering.controller();
-        setRoutineContexts(controller);
+        injectServices(controller);
     }
 
     public void launch(){

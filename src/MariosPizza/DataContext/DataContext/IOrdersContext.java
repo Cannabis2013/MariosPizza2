@@ -1,6 +1,6 @@
-package MariosPizza.MarioPizzaOrdering.DataContext;
+package MariosPizza.DataContext.DataContext;
 
-import MariosPizza.MarioPizzaOrdering.OrdersContext.Order;
+import MariosPizza.DataContext.OrdersContext.Order;
 
 import java.util.List;
 

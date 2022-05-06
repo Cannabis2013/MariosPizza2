@@ -1,4 +1,4 @@
-package MariosPizza.MarioPizzaOrdering.OrdersContext;
+package MariosPizza.DataContext.OrdersContext;
 
 import java.io.Serializable;
 import java.time.LocalTime;

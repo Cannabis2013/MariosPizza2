@@ -1,4 +1,4 @@
-package MariosPizza.MarioPizzaOrdering.DataContext;
+package MariosPizza.DataContext.DataContext;
 
 public abstract class DataContextServices {
     protected IOrdersContext ordersContext() {

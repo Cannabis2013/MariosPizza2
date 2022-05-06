@@ -1,4 +1,4 @@
-package MariosPizza.MarioPizzaOrdering.PizzaContext;
+package MariosPizza.DataContext.PizzaContext;
 
 public class Pizza {
     private static int index = 1;

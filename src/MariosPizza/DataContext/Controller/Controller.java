@@ -1,10 +1,15 @@
-package MariosPizza.MarioPizzaOrdering.Controller;
+package MariosPizza.DataContext.Controller;
 
-import MariosPizza.MarioPizzaOrdering.Controller.Contracts.IRoutineContext;
-import MariosPizza.MarioPizzaOrdering.Controller.ReadKeyboardInput.ReadMenuOption;
-import MariosPizza.MarioPizzaOrdering.DataContext.IDataContext;
+import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
 
 public class Controller {
+    private IReadValueFromUser<Integer> _readMenuOption;
+    public void setMenuReader(IReadValueFromUser<Integer> reader){
+        _readMenuOption = reader;
+    }
+
     private IRoutineContext _menuContext;
     public void setMenuContext(IRoutineContext context) {
         _menuContext = context;
@@ -46,8 +51,7 @@ public class Controller {
     }
 
     private void decision(IDataContext context) {
-        var reader = new ReadMenuOption();
-        var decision = reader.read();
+        var decision = _readMenuOption.read();
         switch (decision) {
             case 1 -> _createOrder.run(context);
             case 3 -> _printPizzaMenu.run(context);

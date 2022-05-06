@@ -1,6 +1,6 @@
-package MariosPizza.MarioPizzaOrdering.PizzaContext;
+package MariosPizza.DataContext.PizzaContext;
 
-import MariosPizza.MarioPizzaOrdering.DataContext.IPizzasContext;
+import MariosPizza.DataContext.DataContext.IPizzasContext;
 import java.util.List;
 
 public class LocalPizzasContext implements IPizzasContext {

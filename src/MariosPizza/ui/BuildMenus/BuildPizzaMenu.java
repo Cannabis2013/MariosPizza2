@@ -2,7 +2,7 @@ package MariosPizza.ui.BuildMenus;
 
 import MariosPizza.ui.ConsoleOutput.PrintBlankScreen;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
-import MariosPizza.MarioPizzaOrdering.PizzaContext.Pizza;
+import MariosPizza.DataContext.PizzaContext.Pizza;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,19 +19,19 @@ public class BuildPizzaMenu implements IStringMenuBuilder<Pizza> {
         lines.print();
     }
 
-    private List<String> formatPizzaStrings(List<Pizza> pizzas){
-        var strings = new ArrayList<String>();
+    private List<String> buildEntries(List<Pizza> pizzas){
+        var entries = new ArrayList<String>();
         for (var i = 0;i < pizzas.size();i++){
             var pizza = pizzas.get(i);
             var name = pizza.name;
             var topping = pizza.topping;
             var price = pizza.price;
             var index = pizza.pizzaIndex();
-            var str = String.format("(%d) %-15s %-75s %3d,-%n", index,name,topping,price);
-            strings.add(str);
+            var entry = String.format("(%d) %-15s %-75s %3d,-%n", index,name,topping,price);
+            entries.add(entry);
         }
-        Collections.reverse(strings);
-        return strings;
+        Collections.reverse(entries);
+        return entries;
     }
 
     private int aggregatedLength(List<String> items){
@@ -58,7 +58,7 @@ public class BuildPizzaMenu implements IStringMenuBuilder<Pizza> {
     }
 
     public String build(List<Pizza> pizzas){
-        var menuEntries = formatPizzaStrings(pizzas);
+        var menuEntries = buildEntries(pizzas);
         var totalLength = aggregatedLength(menuEntries);
         var header = buildHeader(totalLength);
         var menu = header;

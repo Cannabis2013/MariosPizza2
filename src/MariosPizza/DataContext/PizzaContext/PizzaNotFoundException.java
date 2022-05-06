@@ -1,4 +1,4 @@
-package MariosPizza.MarioPizzaOrdering.PizzaContext;
+package MariosPizza.DataContext.PizzaContext;
 
 public class PizzaNotFoundException extends RuntimeException{
     private int index;

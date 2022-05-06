@@ -1,17 +1,19 @@
 package MariosPizza.ui.MarioContexts;
 
+import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
 import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
 import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
-import MariosPizza.MarioPizzaOrdering.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
 import MariosPizza.ui.Contracts.ConsoleOutput.IConsolePrinter;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
-import MariosPizza.MarioPizzaOrdering.DataContext.IDataContext;
-import MariosPizza.MarioPizzaOrdering.OrdersContext.Order;
+import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.ui.ConsoleInput.ReadOrderID;
 import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintBadOrderID;
 import MariosPizza.ui.ConsoleOutput.PrintNoOrdersMessage;
 import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
+import MariosPizza.ui.Contracts.IPrintDevice;
 
 public class MarioRemoveOrder implements IRoutineContext {
     private IClearScreen _clearScreen = new ClearConsole();
@@ -20,6 +22,7 @@ public class MarioRemoveOrder implements IRoutineContext {
 
     private IConsolePrinter _printBadOrderID = new PrintBadOrderID();
     private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();
+    private IPrintDevice _printer = new PrintConsoleOutput();
 
     private int readOrderIDFromUser(IDataContext context){
         var orderID = _readOrderID.read();
@@ -33,7 +36,8 @@ public class MarioRemoveOrder implements IRoutineContext {
 
     private void printOrderMenu(IDataContext context){
         var orders = context.orders();
-        _printOrderMenu.build(orders);
+        var menu = _printOrderMenu.build(orders);
+        _printer.print(menu);
     }
 
     private boolean ordersExists(IDataContext context){

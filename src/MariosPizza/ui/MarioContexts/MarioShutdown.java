@@ -2,9 +2,9 @@ package MariosPizza.ui.MarioContexts;
 
 import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
 import MariosPizza.ui.Contracts.ConsoleUtils.IConsoleCursor;
-import MariosPizza.MarioPizzaOrdering.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
 import MariosPizza.ui.Contracts.ConsoleOutput.IConsolePrinter;
-import MariosPizza.MarioPizzaOrdering.DataContext.IDataContext;
+import MariosPizza.DataContext.DataContext.IDataContext;
 import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleManipulation.ConsoleCursorDevice;
 import MariosPizza.ui.ConsoleOutput.PrintExitScreen;

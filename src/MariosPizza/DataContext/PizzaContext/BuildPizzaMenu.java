@@ -1,4 +1,4 @@
-package MariosPizza.MarioPizzaOrdering.PizzaContext;
+package MariosPizza.DataContext.PizzaContext;
 
 import java.util.ArrayList;
 import java.util.List;

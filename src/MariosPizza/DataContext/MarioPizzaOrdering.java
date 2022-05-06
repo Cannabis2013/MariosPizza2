@@ -1,12 +1,12 @@
-package MariosPizza.MarioPizzaOrdering;
+package MariosPizza.DataContext;
 
-import MariosPizza.MarioPizzaOrdering.Controller.Controller;
-import MariosPizza.MarioPizzaOrdering.DataContext.DataContext;
-import MariosPizza.MarioPizzaOrdering.DataContext.IDataContext;
-import MariosPizza.MarioPizzaOrdering.DataContext.IOrdersContext;
-import MariosPizza.MarioPizzaOrdering.OrdersContext.OrdersContext;
-import MariosPizza.MarioPizzaOrdering.OrdersContext.SerializeOrders;
-import MariosPizza.MarioPizzaOrdering.PizzaContext.LocalPizzasContext;
+import MariosPizza.DataContext.Controller.Controller;
+import MariosPizza.DataContext.DataContext.DataContext;
+import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.DataContext.DataContext.IOrdersContext;
+import MariosPizza.DataContext.OrdersContext.OrdersContext;
+import MariosPizza.DataContext.OrdersContext.SerializeOrders;
+import MariosPizza.DataContext.PizzaContext.LocalPizzasContext;
 
 public class MarioPizzaOrdering {
     public MarioPizzaOrdering(){

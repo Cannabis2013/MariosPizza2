@@ -1,6 +1,6 @@
-package MariosPizza.MarioPizzaOrdering.Controller.ReadKeyboardInput;
+package MariosPizza.ui.ConsoleInput;
 
-public class ReadMenuOption {
+public class ReadInputNonVerbose implements IReadValueFromUser<Integer> {
     public Integer read(){
         var in = System.console();
         var input = in.readPassword();

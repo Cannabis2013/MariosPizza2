@@ -1,9 +1,9 @@
-package MariosPizza.MarioPizzaOrdering.DataContext;
+package MariosPizza.DataContext.DataContext;
 
-import MariosPizza.MarioPizzaOrdering.PizzaContext.Pizza;
-import MariosPizza.MarioPizzaOrdering.PizzaContext.PizzaNotFoundException;
-import MariosPizza.MarioPizzaOrdering.OrdersContext.Order;
-import MariosPizza.MarioPizzaOrdering.OrdersContext.OrderNotFoundException;
+import MariosPizza.DataContext.PizzaContext.Pizza;
+import MariosPizza.DataContext.PizzaContext.PizzaNotFoundException;
+import MariosPizza.DataContext.OrdersContext.Order;
+import MariosPizza.DataContext.OrdersContext.OrderNotFoundException;
 import java.util.List;
 
 public class DataContext extends DataContextServices implements IDataContext {
