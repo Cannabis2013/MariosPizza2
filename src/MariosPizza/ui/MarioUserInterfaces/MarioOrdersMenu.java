@@ -1,22 +1,22 @@
-package MariosPizza.ui.MarioContexts;
+package MariosPizza.ui.MarioUserInterfaces;
 
 import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
-import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.Controller.Contracts.IUserInterface;
 import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
 import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
 import MariosPizza.ui.Contracts.IPrintDevice;
 
-public class MarioOrdersMenu implements IRoutineContext {
+public class MarioOrdersMenu implements IUserInterface {
     private IStringMenuBuilder<Order> _buildOrdersMenu = new BuildOrdersMenu();
     private IClearScreen _clearConsole = new ClearConsole();
     private IPrintDevice _printer = new PrintConsoleOutput();
 
     @Override
-    public void run(IEntityContext context) {
+    public void show(IEntityContext context) {
         _clearConsole.clear();
         var orders = context.orders();
         var menu = _buildOrdersMenu.build(orders);

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MarioOrdersContext implements IOrdersContext {
     private List<Order> _orders;
-    private IPersistence _persistence;
+    private IPersistence _persistence = new SerializeOrders();
     public void setPersistence(IPersistence persistence){
         _persistence = persistence;
     }
@@ -16,6 +16,10 @@ public class MarioOrdersContext implements IOrdersContext {
         _orders = _persistence.load();
         if(!_orders.isEmpty())
             Order.setInstanceIndex(_orders.size() + 1);
+    }
+
+    public MarioOrdersContext(){
+        fetchOrders();
     }
 
     @Override
@@ -30,7 +34,7 @@ public class MarioOrdersContext implements IOrdersContext {
     @Override
     public List<Integer> getPizzaIndexesInProgress(){
         return _orders.stream().filter(Order::isInProgress)
-                .map(p -> p.menuIndexes).toList();
+                .map(p -> p.menuIndex).toList();
     }
 
     @Override
@@ -42,9 +46,21 @@ public class MarioOrdersContext implements IOrdersContext {
     }
 
     @Override
-    public void createOrder(int pizzaIndex, int duration){
+    public void finishOrder(int orderID) {
+        var orderOptional = _orders.stream()
+                .filter(o -> o.orderID == orderID)
+                .findFirst();
+        if(!orderOptional.isPresent())
+            return;
+        var order = orderOptional.get();
+        order.setFinished();
+    }
+
+    @Override
+    public int createOrder(int pizzaIndex, int duration){
         var order = new Order(pizzaIndex,duration);
         _orders.add(order);
+        return order.orderID;
     }
 
     @Override

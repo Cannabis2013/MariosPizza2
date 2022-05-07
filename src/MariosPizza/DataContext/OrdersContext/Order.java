@@ -43,7 +43,7 @@ public class Order implements Comparable<Order>, Serializable {
         return status == Status.Done;
     }
 
-    public final int menuIndexes;
+    public final int menuIndex;
 
     private final LocalTime created;
     private LocalTime _started;
@@ -55,7 +55,7 @@ public class Order implements Comparable<Order>, Serializable {
     private LocalTime _finished;
 
     public Order(int pizzaIndex, int duration) {
-        this.menuIndexes = pizzaIndex;
+        this.menuIndex = pizzaIndex;
         created = LocalTime.now();
         status = Status.Pending;
         estimatedTimeOfFinish = created.plus(duration,ChronoUnit.MINUTES);

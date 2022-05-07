@@ -17,7 +17,9 @@ public interface IOrdersContext {
 
     Order getOrderByID(int id);
 
-    void createOrder(int pizzaIndex, int duration);
+    void finishOrder(int orderID);
+
+    int createOrder(int pizzaIndex, int duration);
 
     void remove(int orderID);
     void remove(List<Integer> orderIDs);

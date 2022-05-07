@@ -1,6 +1,6 @@
-package MariosPizza.ui.MarioContexts;
+package MariosPizza.ui.MarioUserInterfaces;
 
-import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.Controller.Contracts.IUserInterface;
 import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.DataContext.PizzaContext.Pizza;
@@ -20,7 +20,7 @@ import MariosPizza.ui.Contracts.IPrintDevice;
 
 import java.util.List;
 
-public class MarioCreateOrder implements IRoutineContext {
+public class MarioCreateOrder implements IUserInterface {
     private IWaitForInput _haltDevice = new PromptUserForKey();
     private IClearScreen _clearScreen = new ClearConsole();
     private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();
@@ -60,7 +60,7 @@ public class MarioCreateOrder implements IRoutineContext {
     }
 
     @Override
-    public void run(IEntityContext context){
+    public void show(IEntityContext context){
         _clearScreen.clear();
         printPizzaMenu(context);
         var values = readValues(context);

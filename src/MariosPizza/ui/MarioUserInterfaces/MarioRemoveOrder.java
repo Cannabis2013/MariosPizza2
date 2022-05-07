@@ -1,6 +1,6 @@
-package MariosPizza.ui.MarioContexts;
+package MariosPizza.ui.MarioUserInterfaces;
 
-import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.Controller.Contracts.IUserInterface;
 import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
@@ -17,7 +17,7 @@ import MariosPizza.ui.Contracts.IPrintDevice;
 
 import java.util.List;
 
-public class MarioRemoveOrder implements IRoutineContext {
+public class MarioRemoveOrder implements IUserInterface {
     private IClearScreen _clearScreen = new ClearConsole();
     private IConsolePrinter _printNoOrders = new PrintNoOrdersMessage();
     private IReadValueFromUser<List<Integer>> _readOrderID = new ReadOrderIDsForRemoval();
@@ -42,7 +42,7 @@ public class MarioRemoveOrder implements IRoutineContext {
         return orders.size() != 0;
     }
 
-    public void run(IEntityContext context){
+    public void show(IEntityContext context){
         _clearScreen.clear();
         if(!ordersExists(context)) {
             _printNoOrders.print();

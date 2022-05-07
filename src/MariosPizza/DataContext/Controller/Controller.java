@@ -1,6 +1,6 @@
 package MariosPizza.DataContext.Controller;
 
-import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.Controller.Contracts.IUserInterface;
 import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
 
@@ -10,64 +10,64 @@ public class Controller {
         _readMenuOption = reader;
     }
 
-    private IRoutineContext _menuContext;
-    public void setMenuContext(IRoutineContext context) {
-        _menuContext = context;
+    private IUserInterface _menuUI;
+    public void setMenuContext(IUserInterface context) {
+        _menuUI = context;
     }
 
-    private IRoutineContext _shutdown;
-    public void setShutdownRoutine(IRoutineContext routine){
-        _shutdown = routine;
+    private IUserInterface _shutdownUI;
+    public void setShutdownRoutine(IUserInterface routine){
+        _shutdownUI = routine;
     }
 
-    private IRoutineContext _startupContext;
-    public void setWelcomeContext(IRoutineContext printer){
-        _startupContext = printer;
+    private IUserInterface _startUI;
+    public void setWelcomeContext(IUserInterface printer){
+        _startUI = printer;
     }
 
-    private IRoutineContext _removeOrder;
-    public void setRemoveOrderContext(IRoutineContext routine){
-        _removeOrder = routine;
+    private IUserInterface _removeOrderUI;
+    public void setRemoveOrderContext(IUserInterface routine){
+        _removeOrderUI = routine;
     }
 
-    private IRoutineContext _createOrder;
-    public void setCreateOrderRoutine(IRoutineContext routine) {
-        _createOrder = routine;
+    private IUserInterface _createOrderUI;
+    public void setCreateOrderRoutine(IUserInterface routine) {
+        _createOrderUI = routine;
     }
 
-    private IRoutineContext _printPizzaMenu;
-    public void setPizzaMenuContext(IRoutineContext printer) {
-        _printPizzaMenu = printer;
+    private IUserInterface _pizzaMenuUI;
+    public void setPizzaMenuContext(IUserInterface printer) {
+        _pizzaMenuUI = printer;
     }
 
-    private IRoutineContext _printOrdersMenu;
-    public void setOrderMenuPrinter(IRoutineContext printer){
+    private IUserInterface _printOrdersMenu;
+    public void setOrderMenuPrinter(IUserInterface printer){
         _printOrdersMenu = printer;
     }
 
-    private IRoutineContext _finishOrder;
-    public void setOrderFinishedContext(IRoutineContext routine){
-        _finishOrder = routine;
+    private IUserInterface _finishOrderUI;
+    public void setOrderFinishedContext(IUserInterface routine){
+        _finishOrderUI = routine;
     }
 
     private void decision(IEntityContext context) {
         var decision = _readMenuOption.read();
         switch (decision) {
-            case 1 -> _createOrder.run(context);
-            case 3 -> _printPizzaMenu.run(context);
-            case 4 -> _removeOrder.run(context);
-            case 5 -> _finishOrder.run(context);
-            case 6 -> _shutdown.run(context);
-            default -> _printOrdersMenu.run(context);
+            case 1 -> _createOrderUI.show(context);
+            case 3 -> _pizzaMenuUI.show(context);
+            case 4 -> _removeOrderUI.show(context);
+            case 5 -> _finishOrderUI.show(context);
+            case 6 -> _shutdownUI.show(context);
+            default -> _printOrdersMenu.show(context);
         }
     }
 
     public void run(IEntityContext context) {
-        _startupContext.run();
-        _menuContext.run();
+        _startUI.show(context);
+        _menuUI.show();
         while (true){
             decision(context);
-            _menuContext.run();
+            _menuUI.show();
         }
     }
 }

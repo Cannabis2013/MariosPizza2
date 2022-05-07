@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class PrintWelcomeScreen implements IConsolePrinter {
+public class PrintWelcomeScreenFromFile implements IConsolePrinter {
 
     private String readMessage(){
         try {

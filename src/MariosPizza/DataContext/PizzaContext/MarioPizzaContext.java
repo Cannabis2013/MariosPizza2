@@ -3,10 +3,10 @@ package MariosPizza.DataContext.PizzaContext;
 import MariosPizza.DataContext.DataContext.IPizzasContext;
 import java.util.List;
 
-public class LocalPizzasContext implements IPizzasContext {
+public class MarioPizzaContext implements IPizzasContext {
     private final List<Pizza> _pizzas;
 
-    public LocalPizzasContext() {
+    public MarioPizzaContext() {
         _pizzas = new BuildPizzaMenu().build();
     }
 

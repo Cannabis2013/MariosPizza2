@@ -1,8 +1,8 @@
-package MariosPizza.ui.MarioContexts;
+package MariosPizza.ui.MarioUserInterfaces;
 
 import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
 import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
-import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
+import MariosPizza.DataContext.Controller.Contracts.IUserInterface;
 import MariosPizza.ui.Contracts.ConsoleOutput.IConsolePrinter;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
 import MariosPizza.DataContext.DataContext.IEntityContext;
@@ -13,7 +13,7 @@ import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintBadOrderID;
 import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
 
-public class MarioFinishOrder implements IRoutineContext {
+public class MarioFinishOrder implements IUserInterface {
     private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();
     private IClearScreen _clearConsole = new ClearConsole();
     private IReadValueFromUser<Integer> _readOrder = new ReadOrderID();
@@ -39,7 +39,7 @@ public class MarioFinishOrder implements IRoutineContext {
         return orders.size() > 0;
     }
 
-    public void run(IEntityContext context){
+    public void show(IEntityContext context){
         _clearConsole.clear();
         if(ordersExists(context)) {
             printOrderMenu(context);
