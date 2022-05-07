@@ -5,7 +5,7 @@ import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
 import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
-import MariosPizza.ui.ConsoleInput.ReadMultipleIntegers;
+import MariosPizza.ui.ConsoleInput.ReadOrderIDsForRemoval;
 import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintBadOrderID;
 import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
@@ -20,7 +20,7 @@ import java.util.List;
 public class MarioRemoveOrder implements IRoutineContext {
     private IClearScreen _clearScreen = new ClearConsole();
     private IConsolePrinter _printNoOrders = new PrintNoOrdersMessage();
-    private IReadValueFromUser<List<Integer>> _readOrderID = new ReadMultipleIntegers();
+    private IReadValueFromUser<List<Integer>> _readOrderID = new ReadOrderIDsForRemoval();
 
     private IConsolePrinter _printBadOrderID = new PrintBadOrderID();
     private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();

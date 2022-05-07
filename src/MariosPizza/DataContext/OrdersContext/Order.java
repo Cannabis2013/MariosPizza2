@@ -27,6 +27,7 @@ public class Order implements Comparable<Order>, Serializable {
     public final int orderID;
 
     private LocalTime estimatedTimeOfFinish;
+    public LocalTime getEstimated() {return estimatedTimeOfFinish;}
 
     private Status status;
 
@@ -44,9 +45,14 @@ public class Order implements Comparable<Order>, Serializable {
 
     public final int menuIndexes;
 
-    public final LocalTime created;
-    public LocalTime started;
-    public LocalTime finished;
+    private final LocalTime created;
+    private LocalTime _started;
+
+    public LocalTime started() {return _started;}
+
+    public LocalTime finished() {return _finished;}
+
+    private LocalTime _finished;
 
     public Order(int pizzaIndex, int duration) {
         this.menuIndexes = pizzaIndex;
@@ -58,17 +64,13 @@ public class Order implements Comparable<Order>, Serializable {
 
     public static void setInstanceIndex(int instanceIndex) {_instanceIndex = instanceIndex;}
 
-    public LocalTime getEstimated() {
-        return estimatedTimeOfFinish;
-    }
-
     public void setInProgress(){
-        started = LocalTime.now();
+        _started = LocalTime.now();
         status = Status.InProgress;
     }
 
     public void setFinished(){
-        finished = LocalTime.now();
+        _finished = LocalTime.now();
         status = Status.Done;
     }
 

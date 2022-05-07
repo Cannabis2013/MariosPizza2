@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class ReadMultipleIntegers implements IReadValueFromUser<List<Integer>> {
+public abstract class AbstractReadIntegers implements IReadValueFromUser<List<Integer>> {
     private List<Integer> toIntegers(String str){
         var c = Pattern.compile("\\d+");
         var m = c.matcher(str);
@@ -14,9 +14,9 @@ public class ReadMultipleIntegers implements IReadValueFromUser<List<Integer>> {
         return indexes;
     }
 
-    @Override
-    public List<Integer> read() {
+    protected List<Integer> readIntegers(){
         var in = new Scanner(System.in);
+        System.out.print("Enter: ");
         var input = in.nextLine();
         var indexes = toIntegers(input);
         return indexes;

@@ -8,7 +8,7 @@ import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
 import MariosPizza.ui.BuildMenus.BuildPizzaMenu;
 import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
 import MariosPizza.ui.ConsoleInput.PromptUserForKey;
-import MariosPizza.ui.ConsoleInput.ReadMultipleIntegers;
+import MariosPizza.ui.ConsoleInput.ReadIntegersUnsafe;
 import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintBadPizzaIndex;
 import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
@@ -25,7 +25,7 @@ public class MarioCreateOrder implements IRoutineContext {
     private IClearScreen _clearScreen = new ClearConsole();
     private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();
     private IConsolePrinter _printBadPizzaIndex = new PrintBadPizzaIndex();
-    private IReadValueFromUser<List<Integer>> _readPizzaID = new ReadMultipleIntegers();
+    private IReadValueFromUser<List<Integer>> _readPizzaID = new ReadIntegersUnsafe();
     private IStringMenuBuilder<Pizza> _printPizzaMenu = new BuildPizzaMenu();
     private IPrintDevice _printer = new PrintConsoleOutput();
 
