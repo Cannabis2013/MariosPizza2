@@ -4,7 +4,7 @@ import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
 import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
-import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
 import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
@@ -16,7 +16,7 @@ public class MarioOrdersMenu implements IRoutineContext {
     private IPrintDevice _printer = new PrintConsoleOutput();
 
     @Override
-    public void run(IDataContext context) {
+    public void run(IEntityContext context) {
         _clearConsole.clear();
         var orders = context.orders();
         var menu = _buildOrdersMenu.build(orders);

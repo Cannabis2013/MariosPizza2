@@ -1,6 +1,6 @@
 package MariosPizza.DataContext.DataContext;
 
-public abstract class DataContextServices {
+public abstract class EntityContextServices {
     protected IOrdersContext ordersContext() {
         return _ordersContext;
     }

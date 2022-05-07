@@ -1,7 +1,7 @@
 package MariosPizza.ui.Contracts.ConsoleOutput;
 
-import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.DataContext.DataContext.IEntityContext;
 
 public interface IPrintEntityMenu {
-    void print(IDataContext context);
+    void print(IEntityContext context);
 }

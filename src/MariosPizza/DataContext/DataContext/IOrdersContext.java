@@ -19,7 +19,8 @@ public interface IOrdersContext {
 
     void createOrder(int pizzaIndex, int duration);
 
-    void removeOrder(int orderID);
+    void remove(int orderID);
+    void remove(List<Integer> orderIDs);
 
     void persist();
     boolean orderExists(int orderID);

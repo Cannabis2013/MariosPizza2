@@ -6,11 +6,11 @@ import java.util.List;
 public class BuildPizzaMenu {
     public List<Pizza> build(){
         var pizzas = new ArrayList<Pizza>();
-        Pizza p1 = new Pizza( "Vesuvio", "Tomat, Ost, Skinke, Oregano", 57);
-        Pizza p2 = new Pizza( "Amerikaner", "Tomat, Ost, Oksefars, Oregano", 53);
-        Pizza p3 = new Pizza( "Cacciatore", "Tomat, Ost, Pepperoni, Oregano", 57);
-        Pizza p4 = new Pizza( "Carbona", "Tomat, Ost, Kødsovs, Spaghetti, Cocktailpølser, Oregano", 63);
-        Pizza p5 = new Pizza( "Dennis", "Tomat, Ost, Skinke, Pepperoni, Cocktailpølser, Oregano", 65);
+        Pizza p1 = new Pizza( "Vesuvio", "Tomat, Ost, Skinke, Oregano", 57, 12);
+        Pizza p2 = new Pizza( "Amerikaner", "Tomat, Ost, Oksefars, Oregano", 53, 15);
+        Pizza p3 = new Pizza( "Cacciatore", "Tomat, Ost, Pepperoni, Oregano", 57, 15);
+        Pizza p4 = new Pizza( "Carbona", "Tomat, Ost, Kødsovs, Spaghetti, Cocktailpølser, Oregano", 63, 18);
+        Pizza p5 = new Pizza( "Dennis", "Tomat, Ost, Skinke, Pepperoni, Cocktailpølser, Oregano", 65, 23);
         pizzas.add(p1);
         pizzas.add(p2);
         pizzas.add(p3);

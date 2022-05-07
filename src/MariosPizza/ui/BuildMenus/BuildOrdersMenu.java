@@ -33,7 +33,7 @@ public class BuildOrdersMenu implements IStringMenuBuilder<Order> {
             var orderID = order.orderID;
             var formatter = DateTimeFormatter.ofPattern("HH:mm");
             var orderTime = order.getEstimated().format(formatter);
-            var pizzaIndex = order.pizzaIndex;
+            var pizzaIndex = order.menuIndexes;
             var str = String.format("(%d) Pizza: %-15d  ETA: %s%n",
                     orderID,pizzaIndex,orderTime);
             var formatted = formatString(str,order);

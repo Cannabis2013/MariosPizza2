@@ -42,14 +42,14 @@ public class Order implements Comparable<Order>, Serializable {
         return status == Status.Done;
     }
 
-    public final int pizzaIndex;
+    public final int menuIndexes;
 
     public final LocalTime created;
     public LocalTime started;
     public LocalTime finished;
 
     public Order(int pizzaIndex, int duration) {
-        this.pizzaIndex = pizzaIndex;
+        this.menuIndexes = pizzaIndex;
         created = LocalTime.now();
         status = Status.Pending;
         estimatedTimeOfFinish = created.plus(duration,ChronoUnit.MINUTES);

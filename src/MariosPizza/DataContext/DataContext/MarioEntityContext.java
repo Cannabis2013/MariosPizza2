@@ -1,12 +1,12 @@
 package MariosPizza.DataContext.DataContext;
 
-import MariosPizza.DataContext.PizzaContext.Pizza;
-import MariosPizza.DataContext.PizzaContext.PizzaNotFoundException;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.DataContext.OrdersContext.OrderNotFoundException;
+import MariosPizza.DataContext.PizzaContext.Pizza;
+
 import java.util.List;
 
-public class DataContext extends DataContextServices implements IDataContext {
+public class MarioEntityContext extends EntityContextServices implements IEntityContext {
     @Override
     public List<Pizza> pizzas() {
         return pizzasContext().getPizzas();
@@ -38,9 +38,9 @@ public class DataContext extends DataContextServices implements IDataContext {
     }
 
     @Override
-    public void createOrder(int pizzaIndex, int duration) throws PizzaNotFoundException {
+    public void createOrder(int pizzaIndex) {
         var pizza = pizzasContext().getPizza(pizzaIndex);
-        ordersContext().createOrder(pizzaIndex, duration);
+        ordersContext().createOrder(pizzaIndex, pizza.duration);
     }
 
     @Override
@@ -62,7 +62,11 @@ public class DataContext extends DataContextServices implements IDataContext {
 
     @Override
     public void removeOrder(int orderID){
-        ordersContext().removeOrder(orderID);
+        ordersContext().remove(orderID);
+    }
+
+    public void removeOrders(List<Integer> orderIDs){
+        ordersContext().remove(orderIDs);
     }
 
     @Override

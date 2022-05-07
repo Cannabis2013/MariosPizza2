@@ -1,61 +1,72 @@
 package MariosPizza.ui.MarioContexts;
 
 import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
-import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
-import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
-import MariosPizza.ui.Contracts.ConsoleInput.IWaitForInput;
-import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
-import MariosPizza.ui.Contracts.ConsoleOutput.IConsolePrinter;
-import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
-import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.DataContext.PizzaContext.Pizza;
-import MariosPizza.ui.ConsoleInput.PromptUserForKey;
-import MariosPizza.ui.ConsoleInput.ReadOrderDuration;
-import MariosPizza.ui.ConsoleInput.ReadPizzaID;
-import MariosPizza.ui.ConsoleManipulation.ClearConsole;
-import MariosPizza.ui.ConsoleOutput.PrintBadPizzaIndex;
 import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
 import MariosPizza.ui.BuildMenus.BuildPizzaMenu;
+import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
+import MariosPizza.ui.ConsoleInput.PromptUserForKey;
+import MariosPizza.ui.ConsoleInput.ReadMultipleIntegers;
+import MariosPizza.ui.ConsoleManipulation.ClearConsole;
+import MariosPizza.ui.ConsoleOutput.PrintBadPizzaIndex;
+import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
+import MariosPizza.ui.Contracts.ConsoleInput.IWaitForInput;
+import MariosPizza.ui.Contracts.ConsoleOutput.IConsolePrinter;
+import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
+import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
 import MariosPizza.ui.Contracts.IPrintDevice;
+
+import java.util.List;
 
 public class MarioCreateOrder implements IRoutineContext {
     private IWaitForInput _haltDevice = new PromptUserForKey();
-
     private IClearScreen _clearScreen = new ClearConsole();
     private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();
     private IConsolePrinter _printBadPizzaIndex = new PrintBadPizzaIndex();
-    private IReadValueFromUser<Integer> _readPizzaID = new ReadPizzaID();
-    private IReadValueFromUser<Integer> _readOrderDuration = new ReadOrderDuration();
+    private IReadValueFromUser<List<Integer>> _readPizzaID = new ReadMultipleIntegers();
     private IStringMenuBuilder<Pizza> _printPizzaMenu = new BuildPizzaMenu();
     private IPrintDevice _printer = new PrintConsoleOutput();
 
-    private void createOrder(IDataContext context){
-        var pizzaIndex = _readPizzaID.read();
-        if(!context.isPizzaIndexValid(pizzaIndex)) {
-            _printBadPizzaIndex.print();
-            return;
-        }
-        var duration = _readOrderDuration.read();
-        context.createOrder(pizzaIndex,duration);
+    private void createOrders(List<Integer> pizzaIndexes, IEntityContext context){
+        pizzaIndexes.forEach(p -> context.createOrder(p));
     }
 
-    private void printPizzaMenu(IDataContext context){
+    private void printPizzaMenu(IEntityContext context){
         var pizzas = context.pizzas();
         var menu =_printPizzaMenu.build(pizzas);
         _printer.print(menu);
     }
 
-    private void printOrderMenu(IDataContext context){
+    private List<Integer> readValues(IEntityContext context){
+        var pizzaMenuIndexes = _readPizzaID.read();
+        var filteredIndexes = pizzaMenuIndexes.stream()
+                .filter(i -> {
+                    if(!context.isPizzaIndexValid(i)) {
+                        _printBadPizzaIndex.print();
+                        return false;
+                    }
+                    return true;
+                }).toList();
+
+        return filteredIndexes;
+    }
+
+    private void printOrderMenu(IEntityContext context){
         var orders = context.orders();
-        _printOrderMenu.build(orders);
+        var menu = _printOrderMenu.build(orders);
+        _printer.print(menu);
     }
 
     @Override
-    public void run(IDataContext context){
+    public void run(IEntityContext context){
         _clearScreen.clear();
         printPizzaMenu(context);
-        createOrder(context);
+        var values = readValues(context);
+        if(values != null)
+            createOrders(values,context);
+        _clearScreen.clear();
         printOrderMenu(context);
     }
 }

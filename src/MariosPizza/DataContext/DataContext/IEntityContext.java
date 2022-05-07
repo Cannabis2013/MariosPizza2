@@ -1,13 +1,12 @@
 package MariosPizza.DataContext.DataContext;
 
-import MariosPizza.DataContext.PizzaContext.Pizza;
-import MariosPizza.DataContext.PizzaContext.PizzaNotFoundException;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.DataContext.OrdersContext.OrderNotFoundException;
+import MariosPizza.DataContext.PizzaContext.Pizza;
 
 import java.util.List;
 
-public interface IDataContext {
+public interface IEntityContext {
     List<Pizza> pizzas();
 
     boolean isPizzaIndexValid(int index);
@@ -20,7 +19,7 @@ public interface IDataContext {
 
     List<Order> orders();
 
-    void createOrder(int pizzaIndex, int duration) throws PizzaNotFoundException;
+    void createOrder(int pizzaIndex);
 
     void startOrder(int orderID) throws OrderNotFoundException;
 
@@ -29,6 +28,7 @@ public interface IDataContext {
     List<Pizza> pizzasInProgress();
 
     void removeOrder(int orderID);
+    void removeOrders(List<Integer> orderIDs);
     boolean orderExists(int orderID);
 
     void saveOrders();

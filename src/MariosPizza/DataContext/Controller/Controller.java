@@ -1,7 +1,7 @@
 package MariosPizza.DataContext.Controller;
 
 import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
-import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
 
 public class Controller {
@@ -50,7 +50,7 @@ public class Controller {
         _finishOrder = routine;
     }
 
-    private void decision(IDataContext context) {
+    private void decision(IEntityContext context) {
         var decision = _readMenuOption.read();
         switch (decision) {
             case 1 -> _createOrder.run(context);
@@ -62,7 +62,7 @@ public class Controller {
         }
     }
 
-    public void run(IDataContext context) {
+    public void run(IEntityContext context) {
         _startupContext.run();
         _menuContext.run();
         while (true){

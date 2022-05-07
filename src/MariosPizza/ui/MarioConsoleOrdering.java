@@ -18,14 +18,9 @@ public class MarioConsoleOrdering {
         controller.setMenuReader(new ReadInputVerbose());
     }
 
-    private void setupUI(MarioPizzaOrdering ordering){
-        var controller = ordering.controller();
-        injectServices(controller);
-    }
-
     public void launch(){
         var ordering = new MarioPizzaOrdering();
-        setupUI(ordering);
+        injectServices(ordering.controller());
         ordering.start();
     }
 }

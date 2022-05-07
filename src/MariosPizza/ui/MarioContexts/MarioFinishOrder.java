@@ -5,7 +5,7 @@ import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
 import MariosPizza.DataContext.Controller.Contracts.IRoutineContext;
 import MariosPizza.ui.Contracts.ConsoleOutput.IConsolePrinter;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
-import MariosPizza.DataContext.DataContext.IDataContext;
+import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.DataContext.OrdersContext.OrderNotFoundException;
 import MariosPizza.ui.ConsoleInput.ReadOrderID;
@@ -19,12 +19,12 @@ public class MarioFinishOrder implements IRoutineContext {
     private IReadValueFromUser<Integer> _readOrder = new ReadOrderID();
     private IConsolePrinter _printBadOrderID = new PrintBadOrderID();
 
-    private void printOrderMenu(IDataContext context){
+    private void printOrderMenu(IEntityContext context){
         var orders = context.orders();
         _printOrderMenu.build(orders);
     }
 
-    private void updateDataContext(IDataContext context){
+    private void updateDataContext(IEntityContext context){
         var orderID = _readOrder.read();
         try {
             context.finishOrder(orderID);
@@ -34,12 +34,12 @@ public class MarioFinishOrder implements IRoutineContext {
         }
     }
 
-    private boolean ordersExists(IDataContext context){
+    private boolean ordersExists(IEntityContext context){
         var orders = context.orders();
         return orders.size() > 0;
     }
 
-    public void run(IDataContext context){
+    public void run(IEntityContext context){
         _clearConsole.clear();
         if(ordersExists(context)) {
             printOrderMenu(context);

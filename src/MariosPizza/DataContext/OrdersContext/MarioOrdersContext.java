@@ -5,7 +5,7 @@ import MariosPizza.DataContext.DataContext.IPersistence;
 
 import java.util.List;
 
-public class OrdersContext implements IOrdersContext {
+public class MarioOrdersContext implements IOrdersContext {
     private List<Order> _orders;
     private IPersistence _persistence;
     public void setPersistence(IPersistence persistence){
@@ -30,7 +30,7 @@ public class OrdersContext implements IOrdersContext {
     @Override
     public List<Integer> getPizzaIndexesInProgress(){
         return _orders.stream().filter(Order::isInProgress)
-                .map(p -> p.pizzaIndex).toList();
+                .map(p -> p.menuIndexes).toList();
     }
 
     @Override
@@ -48,8 +48,13 @@ public class OrdersContext implements IOrdersContext {
     }
 
     @Override
-    public void removeOrder(int orderID){
+    public void remove(int orderID){
         _orders.removeIf(g -> g.orderID == orderID);
+    }
+
+    @Override
+    public void remove(List<Integer> orderIDs) {
+        _orders.removeIf(g -> orderIDs.contains(g.orderID));
     }
 
     @Override

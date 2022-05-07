@@ -3,15 +3,12 @@ package MariosPizza.ui.BuildMenus;
 import MariosPizza.ui.ConsoleOutput.PrintBlankScreen;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
 import MariosPizza.DataContext.PizzaContext.Pizza;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class BuildPizzaMenu implements IStringMenuBuilder<Pizza> {
     public String fReset = "\u001B[0m";
-    public String green = "\u001B[32m";
-    public String blue = "\u001B[34m";
     public String yellow = "\u001B[33m";
 
     private void lineSpace() {
@@ -42,7 +39,7 @@ public class BuildPizzaMenu implements IStringMenuBuilder<Pizza> {
     }
 
     private String buildHeader(int length){
-        var header = new StringBuilder("\33[33m");
+        var header = new StringBuilder(yellow);
         var label = "PIZZA MENU";
         var lengthOfDots = length - label.length();
         header.append("-".repeat(lengthOfDots));
@@ -52,11 +49,12 @@ public class BuildPizzaMenu implements IStringMenuBuilder<Pizza> {
         else
             medianIndex = (lengthOfDots / 2) + 1;
         header.insert(medianIndex,label);
-        header.append("\33[m");
+        header.append(fReset);
         header.append("\n");
         return header.toString();
     }
 
+    @Override
     public String build(List<Pizza> pizzas){
         var menuEntries = buildEntries(pizzas);
         var totalLength = aggregatedLength(menuEntries);
