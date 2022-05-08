@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrintMenuOperations  implements IConsolePrinter {
-    private String yellow = "\u001B[33m";
+    private String yellow = "\33[33m";
     private String buildItem(String content, int itemIndex, boolean printDelimiter){
         var item = String.format("[%d] %s %s",itemIndex,content, printDelimiter ? "| " : "");
         return item;

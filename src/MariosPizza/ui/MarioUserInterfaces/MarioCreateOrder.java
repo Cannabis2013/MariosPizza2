@@ -2,13 +2,11 @@ package MariosPizza.ui.MarioUserInterfaces;
 
 import MariosPizza.DataContext.Controller.Contracts.IUserInterface;
 import MariosPizza.DataContext.DataContext.IEntityContext;
-import MariosPizza.DataContext.OrdersContext.Order;
-import MariosPizza.DataContext.PizzaContext.Pizza;
-import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
+import MariosPizza.ui.BuildMenus.BuildPendingOrdersMenu;
 import MariosPizza.ui.BuildMenus.BuildPizzaMenu;
 import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
 import MariosPizza.ui.ConsoleInput.PromptUserForKey;
-import MariosPizza.ui.ConsoleInput.ReadIntegersUnsafe;
+import MariosPizza.ui.ConsoleInput.ReadPizzaIndexes;
 import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintBadPizzaIndex;
 import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
@@ -23,10 +21,10 @@ import java.util.List;
 public class MarioCreateOrder implements IUserInterface {
     private IWaitForInput _haltDevice = new PromptUserForKey();
     private IClearScreen _clearScreen = new ClearConsole();
-    private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();
+    private IStringMenuBuilder _buildOrders = new BuildPendingOrdersMenu();
     private IConsolePrinter _printBadPizzaIndex = new PrintBadPizzaIndex();
-    private IReadValueFromUser<List<Integer>> _readPizzaID = new ReadIntegersUnsafe();
-    private IStringMenuBuilder<Pizza> _printPizzaMenu = new BuildPizzaMenu();
+    private IReadValueFromUser<List<Integer>> _readPizzaID = new ReadPizzaIndexes();
+    private IStringMenuBuilder _printPizzaMenu = new BuildPizzaMenu();
     private IPrintDevice _printer = new PrintConsoleOutput();
 
     private void createOrders(List<Integer> pizzaIndexes, IEntityContext context){
@@ -35,7 +33,7 @@ public class MarioCreateOrder implements IUserInterface {
 
     private void printPizzaMenu(IEntityContext context){
         var pizzas = context.pizzas();
-        var menu =_printPizzaMenu.build(pizzas);
+        var menu =_printPizzaMenu.build(context);
         _printer.print(menu);
     }
 
@@ -54,8 +52,8 @@ public class MarioCreateOrder implements IUserInterface {
     }
 
     private void printOrderMenu(IEntityContext context){
-        var orders = context.orders();
-        var menu = _printOrderMenu.build(orders);
+        var orders = context.pendingOrders();
+        var menu = _buildOrders.build(context);
         _printer.print(menu);
     }
 

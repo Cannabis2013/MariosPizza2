@@ -1,14 +1,14 @@
 package MariosPizza.ui.BuildMenus;
 
 import MariosPizza.DataContext.DataContext.IEntityContext;
-import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.ui.ConsoleOutput.PrintBlankScreen;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
+import MariosPizza.DataContext.OrdersContext.Order;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuildOrdersMenu implements IStringMenuBuilder {
+public class BuildPendingOrdersMenu implements IStringMenuBuilder {
     public final String green = "\33[32m";
     public final String blue = "\33[34m";
     public final String red = "\33[31m";
@@ -67,9 +67,8 @@ public class BuildOrdersMenu implements IStringMenuBuilder {
         return red + fastBlink + menu + fReset + "\n";
     }
 
-    @Override
     public String build(IEntityContext entityContext){
-        var pendingOrders = entityContext.orders();
+        var pendingOrders = entityContext.pendingOrders();
         if(pendingOrders.isEmpty())
             return buildNoOrderMessage();
         else

@@ -46,14 +46,11 @@ public class MarioOrdersContext implements IOrdersContext {
     }
 
     @Override
-    public void finishOrder(int orderID) {
-        var orderOptional = _orders.stream()
-                .filter(o -> o.orderID == orderID)
-                .findFirst();
-        if(!orderOptional.isPresent())
-            return;
-        var order = orderOptional.get();
-        order.setFinished();
+    public void finishOrders(List<Integer> orderIDs) {
+        _orders.forEach(o -> {
+            if(orderIDs.contains(o.orderID))
+                o.setFinished();
+        });
     }
 
     @Override

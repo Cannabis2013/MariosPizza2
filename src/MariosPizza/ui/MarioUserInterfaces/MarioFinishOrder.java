@@ -1,33 +1,38 @@
 package MariosPizza.ui.MarioUserInterfaces;
 
-import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
-import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
 import MariosPizza.DataContext.Controller.Contracts.IUserInterface;
-import MariosPizza.ui.Contracts.ConsoleOutput.IConsolePrinter;
-import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
 import MariosPizza.DataContext.DataContext.IEntityContext;
-import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.DataContext.OrdersContext.OrderNotFoundException;
-import MariosPizza.ui.ConsoleInput.ReadOrderID;
+import MariosPizza.ui.BuildMenus.BuildPendingOrdersMenu;
+import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
+import MariosPizza.ui.ConsoleInput.ReadOrderIDsForFinishing;
 import MariosPizza.ui.ConsoleManipulation.ClearConsole;
 import MariosPizza.ui.ConsoleOutput.PrintBadOrderID;
-import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
+import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
+import MariosPizza.ui.Contracts.ConsoleOutput.IConsolePrinter;
+import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
+import MariosPizza.ui.Contracts.ConsoleUtils.IClearScreen;
+import MariosPizza.ui.Contracts.IPrintDevice;
+
+import java.util.List;
 
 public class MarioFinishOrder implements IUserInterface {
-    private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();
+    private IStringMenuBuilder _printOrderMenu = new BuildPendingOrdersMenu();
     private IClearScreen _clearConsole = new ClearConsole();
-    private IReadValueFromUser<Integer> _readOrder = new ReadOrderID();
+    private IReadValueFromUser<List<Integer>> _readOrder = new ReadOrderIDsForFinishing();
     private IConsolePrinter _printBadOrderID = new PrintBadOrderID();
+    private IPrintDevice _printer = new PrintConsoleOutput();
 
     private void printOrderMenu(IEntityContext context){
-        var orders = context.orders();
-        _printOrderMenu.build(orders);
+        var orders = context.pendingOrders();
+        var menu = _printOrderMenu.build(context);
+        _printer.print(menu);
     }
 
-    private void updateDataContext(IEntityContext context){
-        var orderID = _readOrder.read();
+    private void updateEntityContext(IEntityContext context){
+        var orderIDs = _readOrder.read();
         try {
-            context.finishOrder(orderID);
+            context.finishOrders(orderIDs);
         } catch (OrderNotFoundException e) {
             _clearConsole.clear();
             _printBadOrderID.print();
@@ -43,7 +48,9 @@ public class MarioFinishOrder implements IUserInterface {
         _clearConsole.clear();
         if(ordersExists(context)) {
             printOrderMenu(context);
-            updateDataContext(context);
+            updateEntityContext(context);
+            _clearConsole.clear();
+            printOrderMenu(context);
         }
     }
 }

@@ -2,7 +2,6 @@ package MariosPizza.DataContext.DataContext;
 
 import MariosPizza.DataContext.OrdersContext.MarioOrdersContext;
 import MariosPizza.DataContext.OrdersContext.Order;
-import MariosPizza.DataContext.OrdersContext.OrderNotFoundException;
 import MariosPizza.DataContext.PizzaContext.MarioPizzaContext;
 import MariosPizza.DataContext.PizzaContext.Pizza;
 
@@ -50,13 +49,13 @@ public class MarioEntityContext implements IEntityContext {
     }
 
     @Override
-    public void startOrder(int orderID) throws OrderNotFoundException {
+    public void startOrder(int orderID){
         _ordersContext.getOrderByID(orderID).setInProgress();
     }
 
     @Override
-    public void finishOrder(int orderID) {
-        _ordersContext.getOrderByID(orderID).setFinished();
+    public void finishOrders(List<Integer> orderIDs) {
+        _ordersContext.finishOrders(orderIDs);
     }
 
     @Override

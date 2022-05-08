@@ -2,7 +2,6 @@ package MariosPizza.ui.MarioUserInterfaces;
 
 import MariosPizza.DataContext.Controller.Contracts.IUserInterface;
 import MariosPizza.DataContext.DataContext.IEntityContext;
-import MariosPizza.DataContext.OrdersContext.Order;
 import MariosPizza.ui.BuildMenus.BuildOrdersMenu;
 import MariosPizza.ui.ConsoleInput.IReadValueFromUser;
 import MariosPizza.ui.ConsoleInput.ReadOrderIDsForRemoval;
@@ -23,7 +22,7 @@ public class MarioRemoveOrder implements IUserInterface {
     private IReadValueFromUser<List<Integer>> _readOrderID = new ReadOrderIDsForRemoval();
 
     private IConsolePrinter _printBadOrderID = new PrintBadOrderID();
-    private IStringMenuBuilder<Order> _printOrderMenu = new BuildOrdersMenu();
+    private IStringMenuBuilder _printOrderMenu = new BuildOrdersMenu();
     private IPrintDevice _printer = new PrintConsoleOutput();
 
     private List<Integer> readOrderIDFromUser(IEntityContext context){
@@ -33,7 +32,7 @@ public class MarioRemoveOrder implements IUserInterface {
 
     private void printOrderMenu(IEntityContext context){
         var orders = context.orders();
-        var menu = _printOrderMenu.build(orders);
+        var menu = _printOrderMenu.build(context);
         _printer.print(menu);
     }
 

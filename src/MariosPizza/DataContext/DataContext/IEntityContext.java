@@ -15,7 +15,7 @@ public interface IEntityContext {
     List<Order> orders();
     int createOrder(int pizzaIndex);
     void startOrder(int orderID) throws OrderNotFoundException;
-    void finishOrder(int orderID) throws OrderNotFoundException;
+    void finishOrders(List<Integer> orderIDs);
     List<Pizza> pizzasInProgress();
     void removeOrder(int orderID);
     void removeOrders(List<Integer> orderIDs);

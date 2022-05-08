@@ -4,11 +4,10 @@ import MariosPizza.ui.ConsoleOutput.PrintConsoleOutput;
 
 import java.util.List;
 
-public class ReadOrderIDsForRemoval extends AbstractReadIntegers {
-
-    public ReadOrderIDsForRemoval(){
-        _preText = "Select orders for removal: ";
-        _safeMessage = "Sure you want to remove the following orders? ";
+public class ReadOrderIDsForFinishing extends AbstractReadIntegers{
+    public ReadOrderIDsForFinishing(){
+        _preText = "Select orderIDs: ";
+        _safeMessage = "Sure they are finished? Maybe you missed some tomatoes or garlic on one of the pizzas? :-D ";
     }
 
     @Override
@@ -17,7 +16,7 @@ public class ReadOrderIDsForRemoval extends AbstractReadIntegers {
         while (true){
             integers = readIntegers();
             if(safetyPrompt(integers,new PrintConsoleOutput()))
-               return integers;
+                return integers;
         }
     }
 }

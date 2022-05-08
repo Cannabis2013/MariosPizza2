@@ -1,5 +1,6 @@
 package MariosPizza.ui.BuildMenus;
 
+import MariosPizza.DataContext.DataContext.IEntityContext;
 import MariosPizza.ui.ConsoleOutput.PrintBlankScreen;
 import MariosPizza.ui.Contracts.ConsoleOutput.IStringMenuBuilder;
 import MariosPizza.DataContext.PizzaContext.Pizza;
@@ -7,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BuildPizzaMenu implements IStringMenuBuilder<Pizza> {
-    public String fReset = "\u001B[0m";
-    public String yellow = "\u001B[33m";
+public class BuildPizzaMenu implements IStringMenuBuilder {
+    public String fReset = "\33[0m";
+    public String yellow = "\33[33m";
 
     private void lineSpace() {
         PrintBlankScreen lines = new PrintBlankScreen();
@@ -55,7 +56,8 @@ public class BuildPizzaMenu implements IStringMenuBuilder<Pizza> {
     }
 
     @Override
-    public String build(List<Pizza> pizzas){
+    public String build(IEntityContext entityContext){
+        var pizzas = entityContext.pizzas();
         var menuEntries = buildEntries(pizzas);
         var totalLength = aggregatedLength(menuEntries);
         var header = buildHeader(totalLength);

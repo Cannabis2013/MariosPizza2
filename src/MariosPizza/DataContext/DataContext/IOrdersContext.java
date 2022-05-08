@@ -17,7 +17,7 @@ public interface IOrdersContext {
 
     Order getOrderByID(int id);
 
-    void finishOrder(int orderID);
+    void finishOrders(List<Integer> orderIDs);
 
     int createOrder(int pizzaIndex, int duration);
 

@@ -1,7 +1,7 @@
 package MariosPizza.ui.Contracts.ConsoleOutput;
 
-import java.util.List;
+import MariosPizza.DataContext.DataContext.IEntityContext;
 
-public interface IStringMenuBuilder<T> {
-    String build(List<T> entities);
+public interface IStringMenuBuilder {
+    String build(IEntityContext entityContext);
 }
